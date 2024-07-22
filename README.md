@@ -1,2 +1,2 @@
-# skypro_-diploma
+# skypro_diploma
 Дипломная работа. Архитектура фреймворка
