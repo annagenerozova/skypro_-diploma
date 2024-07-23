@@ -61,6 +61,7 @@ class TourApi:
             "arrivalCountryId": id_country
          }
         response = requests.get(self.url+"/filters/getFilters" ,params=params)
+       
 
   
     def like(self, id_hotel):
@@ -72,8 +73,8 @@ class TourApi:
         return response.json()
     
     def list_like(self, params_to_add=None):
-        resp = requests.get(self.url + '/wishlist', params=params_to_add)
-        return resp
+        resp = requests.get(self.url + '/search/wishList', params=params_to_add)
+        return resp.json()
 
     
     def delete_like(self, id_hotel):

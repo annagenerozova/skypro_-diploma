@@ -13,7 +13,7 @@ def test_search():
     main_page.tour_search()
     browser.quit()
     
-def test_choice():
+def test_like():
     browser = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
     main_page = MainPage(browser) #Переменная хранит экземпляр класса SearchPage
     

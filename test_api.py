@@ -3,7 +3,6 @@ from TourApi import TourApi
 
 api = TourApi("https://fstravel.com/searchtour")
 api2=TourApi("https://fstravel.com/api")
-url = TourApi("https://fstravel.com")
 
 #Поиск id города отправления
 def test_id_city():
@@ -48,17 +47,17 @@ def test_like_tour():
     #нашли тур
     city_name = "Санкт-Петербург"
     city_id = api2.get_city_id(city_name) 
-    country_name = "Турция"
+    country_name = "Турция" 
     country_id = api2.get_coutry_id(country_name)
-    start_date = "2024-08-01"
-    nights_count = 7
-    adults = 2
-    result = api.search(city_id, country_id, start_date, nights_count, adults)
-    body1_like =url.list_like()
     #Поиск id отеля
-    id_hotel =api2.get_hotel_ids
+    id_hotel=api2.get_hotel_ids(city_id, country_id)
+    #запросили список избранных
+    body1_like =api2.list_like()
+    #Добавили отель 
     hotel_like =api2.like(id_hotel)
-    body2_like = url.list_like()
+    #запросили список после добавления 
+    body2_like = api2.list_like()
+    #Проверили разницу
     assert len(body1_like) + 1 == len(body2_like)
 
 def test_delete_like_tour():
