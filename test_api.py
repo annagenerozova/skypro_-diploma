@@ -36,6 +36,10 @@ def test_search_tour():
         print("Failed to retrieve tour information.")
 
 def test_hotel_id():
+    city_name = "Санкт-Петербург"
+    city_id = api2.get_city_id(city_name) 
+    country_name = "Турция"
+    country_id = api2.get_coutry_id(country_name)
     hotel_ids =api2.get_hotel_ids
     print("Hotel IDs:", hotel_ids)
 
@@ -46,8 +50,6 @@ def test_like_tour():
     city_id = api2.get_city_id(city_name) 
     country_name = "Турция"
     country_id = api2.get_coutry_id(country_name)
-    city = city_id
-    country = country_id
     start_date = "2024-08-01"
     nights_count = 7
     adults = 2
@@ -71,7 +73,6 @@ def test_delete_like_tour():
     nights_count = 7
     adults = 2
     result = api.search(city_id, country_id, start_date, nights_count, adults)
-    
     #Поиск id отеля
     id_hotel =api2.get_hotel_ids
     #добавление в избранное 

@@ -5,37 +5,37 @@ from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.by import By
 from UI.MainPage import MainPage
 
-#Поиск тура
-# def test_search():
-#     browser = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
-#     main_page = MainPage(browser) #Переменная хранит экземпляр класса SearchPage
+# Поиск тура
+def test_search():
+    browser = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
+    main_page = MainPage(browser) #Переменная хранит экземпляр класса SearchPage
 
-#     main_page.tour_search()
-#     browser.quit()
+    main_page.tour_search()
+    browser.quit()
     
-# def test_choice():
-#     browser = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
-#     main_page = MainPage(browser) #Переменная хранит экземпляр класса SearchPage
+def test_choice():
+    browser = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
+    main_page = MainPage(browser) #Переменная хранит экземпляр класса SearchPage
     
-#     main_page.tour_search()
-#     main_page.like_tour()
-#     browser.quit()
+    main_page.tour_search()
+    main_page.like_tour()
+    browser.quit()
     
-# def test_choice():
-#     browser = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
-#     main_page = MainPage(browser) #Переменная хранит экземпляр класса SearchPage
+def test_choice():
+    browser = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
+    main_page = MainPage(browser) #Переменная хранит экземпляр класса SearchPage
     
-#     main_page.tour_search()
-#     main_page.choice_tour()
-#     browser.quit()
+    main_page.tour_search()
+    main_page.choice_tour()
+    browser.quit()
     
-# def test_comparison():
-#     browser = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
-#     main_page = MainPage(browser) #Переменная хранит экземпляр класса SearchPage
+def test_comparison():
+    browser = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
+    main_page = MainPage(browser) #Переменная хранит экземпляр класса SearchPage
     
-#     main_page.tour_search()
-#     main_page.comparison_tour()
-#     browser.quit()
+    main_page.tour_search()
+    main_page.comparison_tour()
+    browser.quit()
 
 def test_delete_comparison():
     browser = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
