@@ -10,6 +10,13 @@ class MainPage:
         self._driver.get("https://fstravel.com/searchtour")
         self._driver.implicitly_wait(15)
         self._driver.maximize_window()
+    
+    def logo(self):
+        close_button = WebDriverWait(self._driver, 30).until(
+                EC.element_to_be_clickable((By.XPATH, '//*[@class="popmechanic-close"]')))
+        close_button.click()
+        self._driver.find_element(By.CSS_SELECTOR, '[class="v-logo"]').click()
+        assert self._driver.current_url == "https://fstravel.com/"
   
     def tour_search (self):
         close_button = WebDriverWait(self._driver, 30).until(

@@ -16,7 +16,7 @@ import allure
 @allure.description("Запрос на поиск тура с заданными данными ")
 def test_search():
     browser = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
-    main_page = MainPage(browser) #Переменная хранит экземпляр класса SearchPage
+    main_page = MainPage(browser) 
 
     main_page.tour_search()
     departure_city = main_page.get_departure_city()
@@ -31,7 +31,7 @@ def test_search():
 @allure.description("Найти нужный отель/тур  и добавить его в избранное")
 def test_like():
     browser = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
-    main_page = MainPage(browser) #Переменная хранит экземпляр класса SearchPage
+    main_page = MainPage(browser) 
     
     main_page.tour_search()
     main_page.like_tour()
@@ -45,7 +45,7 @@ def test_like():
 @allure.description("Найти нужный отель/тур  и добавить его в корзину")    
 def test_choice():
     browser = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
-    main_page = MainPage(browser) #Переменная хранит экземпляр класса SearchPage
+    main_page = MainPage(browser) 
     
     main_page.tour_search()
     main_page.choice_tour()
@@ -59,8 +59,22 @@ def test_choice():
 @allure.description("Найти нужные туры и добавить их в сранения")       
 def test_comparison():
     browser = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
-    main_page = MainPage(browser) #Переменная хранит экземпляр класса SearchPage
+    main_page = MainPage(browser) 
     
     main_page.tour_search()
     main_page.comparison_tour()
     browser.quit()
+
+@allure.id("SKYPRO-5")
+@allure.epic("Тyр фирма Fun&Sun") 
+@allure.severity("blocker")
+@allure.title("Проверка url")
+@allure.feature("ADD")
+@allure.description("Открыть главную страницу проверить URL")
+def test_logo():
+    browser = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
+    main_page = MainPage(browser)
+    main_page.logo()
+    browser.quit()
+
+# https://fstravel.com/storage/images/logo.svg

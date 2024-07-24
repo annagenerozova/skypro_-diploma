@@ -59,33 +59,47 @@ class TourApi:
             return None
     #Поиск Id тура/отеля
     def post_hotel_ids(self,id_city, id_country):
+
         headers = {
-        "Cache-Control":"no-cache",  
-        "Content-Encoding":"gzip, deflate,br",
-        "Content-Type": "application/json",
-        "Server":"ddos-guard",
-        "Set-Cookie":"XSRF-TOKEN=eyJpdiI6Imt3WDVLNXpUODhSTEZCRzBqOWNtRmc9PSIsInZhbHVlIjoiUlRoY1N5amY5a3c0YTdWWFI4OCtVRkUwTnRyS3RYMkwwUTJmbWRUK1Zpa3NZZUVSLzROTEp3b3ByM1ptREV3aS9QbXRKTEw2MWVOdktZRktFVHVtVkt1T3RnYTc2OVVEbmZXZU9YUDVPTlhQSVZCRjZxb09xajhJTTZjdzM3T28iLCJtYWMiOiI0N2RmNWI2NDMyNzhhZTU5ZGU2NmQ0MjE2OGM3NjMzMmY5OGRjYmY2MzdhNjRjOGZkODM1NzMyZDY2ZTk5MDAxIn0%3D; expires=Fri, 26-Jul-2024 00:58:35 GMT; Max-Age=129600; path=/; samesite=lax",
-        "Set-Cookie": "funsan_session=eyJpdiI6IktVNnpNaVFqeWNCSmRoR2dibmI2WVE9PSIsInZhbHVlIjoiNTk2WW5rSmVuRVhsalVVdmlldVJvaXhmL21tNGlEeHJTNStzUURKWTB2cGNYWVR6UmRZS1VFazVNRDMwL2Q3VWM1ZVdTUWRIQUhFNmduMTJORFJrdTRZZ091aEN0L3hZUDhsak1OaW8vcS82enVhSlBKWStUS3oyTkhSYUc5cWkiLCJtYWMiOiI4NDRjMzM2ZjY2YWNlMTI4Yzc1MWEzOGQ0NjRhMTE2ZDQ4MTdlN2I3NzJkODdiOGI3M2YwYmM0MGU4NjI5OTM1In0%3D; expires=Fri, 26-Jul-2024 00:58:35 GMT; Max-Age=129600; path=/; httponly; samesite=lax"
+            'x-csrf-token': 'tdLG3vZnZWFbt3eq36FUDO0SxHGwGztTJBzFwlKH',
+            'Cookie': 'XSRF-TOKEN=eyJpdiI6InA0cFg5STJJSU40WlUrZUEzckFITmc9PSIsInZhbHVlIjoib1VnUEpsbjYxdUdMS0tqbE1TREtCNzlsYS9tZ3lZQm9LUjFMM3phc2N4NndyL1Y1UzZXejhUVnprZStzTlBaeFZJNXdXVnpjam1HTDdFd1VTMzhDVHFrMmd2RlFaVTY0VHdRNkZmaFZzaEJkcXVmUGlFVDNobElUVVlZRDJzZ1oiLCJtYWMiOiJmNzhlZTkzNzRlZmIyOGUwNjc3Zjc2YmI2ODBkYjA3NmFmOGQwYWViZTgwYTkzNjFkZWUyMjg0ZDJhYmExMTYyIn0%3D; __ddg1_=eT3uVnvvcKCwGzQJj9w5; funsan_session=eyJpdiI6IngxQ2FVVU9oeWg1RU1qd0JjK0pnR3c9PSIsInZhbHVlIjoiak5oTy80akJMdS8xOFpUOFZQM2kxcFBzd2RRd1VvTUhiQ3h1OFN0V1VvaDVFaU9VUjBHMjBDUnBnOGpEVnd1d1RXSCttdkVKZVRidFRPZ3Z3QlJzWHovbFUwNHVBTmdnR2VER3NmNzNFZ0ZWdWUwcFA2empEMDdrdyt3elgvREQiLCJtYWMiOiJjMWY4MzFjMTU1MmZiYzA0YWJjNThhMTcwNjNkN2M0YmExNWZlYjcxNWQzMGU2YzcyMGY3NzAyZjFiNmU0OTE3In0%3D',
+            'x-xsrf-token': 'eyJpdiI6IjZ5M2lsV3FoMGF3S3dXYVltVHQyZkE9PSIsInZhbHVlIjoiVWNFSzNRWk9CMDIwMjUzR2pLTXlDWWQxclJWTWFpakYzQjk5aVZWcVhVektNREFHcTVvMHJMTHZWanlRdWRjdXpBQW9yRzg0ZE1zQkFJYm1iNk5LUGVsMUtjUmUyRmZKdmlTZzllTE5BMHRjL1FLcmIwbW90U01kT3UxM1BxbTAiLCJtYWMiOiJkY2JmNWUzZDZlYTg5OTAwNDQ4NTY3OWFhNzA3Y2UwNzRmNWYxNzk1MGQyNzcwYWJmOTdkZjk0ZDc3N2NhNTZiIn0='
         }
         body = {
             "departureCityId": id_city,
             "arrivalCountryId": id_country
          }
-        response = requests.post(self.url+'/filters/getFilters' ,json=body, headers=headers)
-        return response
+
+        response = requests.post(self.url+"/filters/getFilters" , headers=headers, json=body)
+        return response.json()[0]['id']
+
        
   
     def like(self, id_hotel):
-        params={
+        headers = {
+            'x-csrf-token': 'tdLG3vZnZWFbt3eq36FUDO0SxHGwGztTJBzFwlKH',
+            'Cookie': 'XSRF-TOKEN=eyJpdiI6IkhKUTI0RWJKWi9VS2FTOEpRT2cxVmc9PSIsInZhbHVlIjoiN3ZWTkRWbUVod2JWV2ZWNnpIVzkrdlQrcjlWRGFWT3dGNnBod243N0Qva1NZTTMrMVdzMGhKSkRXZUVHWWQ5RmxjaWRBd1ZpZzJIMFN5a1RPYS9Vc2ViNzNhVW5wZUhGVEx1R0IyYi9ZSUZnL1ExM0J6QWN0dU4zcGlmd0NiMXkiLCJtYWMiOiI4ZmJlMGM0ZDJmYmEwMmZlOGUwZWU0Mzg5NTYxMzBmNWMxZWZiZDQ2MTMxN2I3ZGQ5MDJhYmFlZWNiMGIyYjg3In0%3D; __ddg1_=eT3uVnvvcKCwGzQJj9w5; funsan_session=eyJpdiI6InNsRHpQeUlDbC80WTJoRFVhV3RCbEE9PSIsInZhbHVlIjoiNFFic1BVWVAwdU9ncFRES2ZnSWZrcGdSV1ZBclZTQmhMdENGN1VDYVRKOE9XVzY4a1JWUHdHTktrWGdVeFgxMGJDa1JkL1ovUlM1UUFpakpLa3lnckRBRHFaMHZ2RmVmTUtvWks5M2htdExGWVFDMEFORk5wRzN2QTdKWEd6c00iLCJtYWMiOiIwYTAzYWI2ODYzMzcwNWZkMGM3NjczMmMzY2I5OWY0OWMyZDgxMzg0ODFhMDYwNjJlZDBjZDQ1ZWI3YjM3ODg2In0%3D',
+            'x-xsrf-token': 'eyJpdiI6IlhsUDFzZC9paVZuTlhmcFlsNUs4cWc9PSIsInZhbHVlIjoiYXVFMU5hSk9MV3RqdFQvM0dGaWsydnJ3aVlzdDRVVDlzeGtFanFQUzMrZGlTVTNEN2tLYjBqU0pJc1laRDZ2c2M1L1NEV2JZQWFndDYrWU9oZ2doZ0E4L3hmR2pJRzhOMHhpVmNDRkgyYTFoZGswYURqOEF5cG9rV1phczNiZUkiLCJtYWMiOiJjNDA1ZDYzMmE3NWE4ZWJjNjMyYjNmNmRhOWFiNzBiNDdmM2Y5ZWI1MWFkYjIzZGRhZjNjZmM4MjcxMWE2NDJiIn0='
+        }
+        
+        body={
+            "objectTypeId":2,
             "objectKey":id_hotel
             }
-        response = requests.get(self.url+'/search/wishList',params=params )
+        response = requests.post(self.url+'/search/wishList',headers=headers, json=body )
         assert response.status_code == 200
         return response.json()
+
     
     def list_like(self, params_to_add=None):
-        resp = requests.get(self.url + '/search/wishList', params=params_to_add)
+        headers = {
+            'x-csrf-token': 'tdLG3vZnZWFbt3eq36FUDO0SxHGwGztTJBzFwlKH',
+            'Cookie': 'XSRF-TOKEN=eyJpdiI6IkhKUTI0RWJKWi9VS2FTOEpRT2cxVmc9PSIsInZhbHVlIjoiN3ZWTkRWbUVod2JWV2ZWNnpIVzkrdlQrcjlWRGFWT3dGNnBod243N0Qva1NZTTMrMVdzMGhKSkRXZUVHWWQ5RmxjaWRBd1ZpZzJIMFN5a1RPYS9Vc2ViNzNhVW5wZUhGVEx1R0IyYi9ZSUZnL1ExM0J6QWN0dU4zcGlmd0NiMXkiLCJtYWMiOiI4ZmJlMGM0ZDJmYmEwMmZlOGUwZWU0Mzg5NTYxMzBmNWMxZWZiZDQ2MTMxN2I3ZGQ5MDJhYmFlZWNiMGIyYjg3In0%3D; __ddg1_=eT3uVnvvcKCwGzQJj9w5; funsan_session=eyJpdiI6InNsRHpQeUlDbC80WTJoRFVhV3RCbEE9PSIsInZhbHVlIjoiNFFic1BVWVAwdU9ncFRES2ZnSWZrcGdSV1ZBclZTQmhMdENGN1VDYVRKOE9XVzY4a1JWUHdHTktrWGdVeFgxMGJDa1JkL1ovUlM1UUFpakpLa3lnckRBRHFaMHZ2RmVmTUtvWks5M2htdExGWVFDMEFORk5wRzN2QTdKWEd6c00iLCJtYWMiOiIwYTAzYWI2ODYzMzcwNWZkMGM3NjczMmMzY2I5OWY0OWMyZDgxMzg0ODFhMDYwNjJlZDBjZDQ1ZWI3YjM3ODg2In0%3D',
+            'x-xsrf-token': 'eyJpdiI6IlhsUDFzZC9paVZuTlhmcFlsNUs4cWc9PSIsInZhbHVlIjoiYXVFMU5hSk9MV3RqdFQvM0dGaWsydnJ3aVlzdDRVVDlzeGtFanFQUzMrZGlTVTNEN2tLYjBqU0pJc1laRDZ2c2M1L1NEV2JZQWFndDYrWU9oZ2doZ0E4L3hmR2pJRzhOMHhpVmNDRkgyYTFoZGswYURqOEF5cG9rV1phczNiZUkiLCJtYWMiOiJjNDA1ZDYzMmE3NWE4ZWJjNjMyYjNmNmRhOWFiNzBiNDdmM2Y5ZWI1MWFkYjIzZGRhZjNjZmM4MjcxMWE2NDJiIn0='
+        }
+        resp = requests.get(self.url + '/search/wishList', headers=headers, params=params_to_add)
         return resp.json()
+
 
     
     def delete_like(self, id_hotel):

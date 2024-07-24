@@ -1,0 +1,1 @@
+{"name": "Добавление тура в корзину", "status": "passed", "description": "Найти нужный отель/тур  и добавить его в корзину", "start": 1721837528621, "stop": 1721837531240, "uuid": "86d35b37-abf6-4792-83f7-a5774d8f6e60", "testCaseId": "e62363294ebc55c9806929fe1932cda8", "fullName": "test_ui#test_choice"}
