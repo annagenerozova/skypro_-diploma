@@ -26,6 +26,9 @@ class MainPage:
         self._driver.find_element(By.CSS_SELECTOR, '[class="v-tourists__pinput"]').click()
         self._driver.find_element(By.XPATH, '//*[@class="v-icon v-icon-plus_square active"]').click()
         self._driver.find_element(By.XPATH, '//*[@class="v-btn-yellow v-search-button"]').click()
+    
+    def get_departure_city(self):
+        return self._driver.find_element(By.CSS_SELECTOR, '[name="Город"]').get_attribute('value')
 
     def like_tour(self):
         WebDriverWait(self._driver, 40).until(EC.element_to_be_clickable( (By.XPATH, '//*[contains(@class, "ui-icon-heart-container") and contains(@class, "hotel-card__img-favorites")]'))).click()
@@ -69,4 +72,6 @@ class MainPage:
        close_button = WebDriverWait(self._driver, 30).until(
               EC.element_to_be_clickable((By.XPATH, '//*[@class="close"]'))).click()
        WebDriverWait(self._driver, 40).until(
-                EC.element_to_be_clickable((By.CSS_SELECTOR, '.slider__delete-block'))).click()
+                EC.element_to_be_clickable((By.CSS_SELECTOR, '.slider__delete-block'))).click()# Проверка что тур удален
+    #    WebDriverWait(self._driver, 30).until(
+    #          EC.invisibility_of_element_located((By.CSS_SELECTOR, '.slider__delete-block')))
