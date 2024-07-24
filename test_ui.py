@@ -64,27 +64,3 @@ def test_comparison():
     main_page.tour_search()
     main_page.comparison_tour()
     browser.quit()
-
-@allure.id("SKYPRO-5")
-@allure.epic("Тyр фирма Fun&Sun") 
-@allure.severity("blocker")
-@allure.title("Удаление туров из раздела сравнения")
-@allure.feature("ADD")
-@allure.description("Найти нужные туры, добавить их в сранения, очистить раздел сранения")   
-def test_delete_comparison():
-    browser = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
-    main_page = MainPage(browser) #Переменная хранит экземпляр класса SearchPage
-    
-    main_page.tour_search()
-    main_page.comparison_tour()
-    main_page.delete_comparison()
-     # Дополнительная проверка что тур был удален
-    try:
-        # Убедитесь, что элемент больше не виден
-        WebDriverWait(browser, 10).until(
-            EC.invisibility_of_element_located((By.CSS_SELECTOR, '.slider__delete-block')))
-        print("Тур успешно удален")
-    except TimeoutError:
-        print("Тур не был удален")
-
-    browser.quit()

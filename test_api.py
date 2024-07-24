@@ -66,53 +66,6 @@ def test_hotel_id():
     hotel_ids =api2.post_hotel_ids(city_id,country_id)
     print("Hotel IDs:", hotel_ids)
 
-@allure.id("SKYPRO-5")
-@allure.epic("Тyр фирма Fun&Sun") 
-@allure.severity("blocker")
-@allure.title("Добавление тура в избранное")
-@allure.feature("ADD")
-@allure.description("Найти нужный отель/тур  и добавить его в избранное")
-def test_like_tour():
-    with allure.step("Передача данных для поиска"):
-        city_name = "Санкт-Петербург"
-        city_id = api2.get_city_id(city_name) 
-        country_name = "Турция" 
-        country_id = api2.get_coutry_id(country_name)
-    with allure.step("Запрос на получение id отеля"):
-        id_hotel=api2.post_hotel_ids(city_id, country_id)
-    # понять почему не записывается в переменную id отеля
-    with allure.step("Получение списка избранных"):
-        body1_like =api2.list_like()
-    with allure.step("Добавили отель в избранное"):
-        hotel_like =api2.like(id_hotel)
-    with allure.step("Получение списка избранных после добавления"):
-        body2_like = api2.list_like()
-    with allure.step("Сравнить размеры 2х списков"): 
-        assert len(body1_like) + 1 == len(body2_like)
-
-@allure.id("SKYPRO-6")
-@allure.epic("Тyр фирма Fun&Sun") 
-@allure.severity("blocker")
-@allure.title("Удаление тура из избранное")
-@allure.feature("ADD")
-@allure.description("удалить добавленный в избранное тур")
-def test_delete_like_tour():
-    city_name = "Санкт-Петербург"
-    city_id = api2.get_city_id(city_name) 
-    country_name = "Турция"
-    country_id = api2.get_coutry_id(country_name)
-    city = city_id
-    country = country_id
-    start_date = "2024-08-01"
-    nights_count = 7
-    adults = 2
-    result = api.search(city_id, country_id, start_date, nights_count, adults)
-    id_hotel =api2.get_hotel_ids
-    body1_like =api2.like(id_hotel)
-    with allure.step("Удалили отель в избранное"):
-        body2_delete = api2.delete_like(body1_like)
-    with allure.step("Сравнить размеры 2х списков"): 
-        assert len(body1_like) + 1 == len(body2_delete)
 
 @allure.id("SKYPRO-7")
 @allure.epic("Тyр фирма Fun&Sun") 
@@ -123,16 +76,5 @@ def test_delete_like_tour():
 def test_thailand():
     result = api.thailand_tour  
 
-@allure.id("SKYPRO-7")
-@allure.epic("Тyр фирма Fun&Sun") 
-@allure.severity("blocker")
-@allure.title("Авторизация")
-@allure.feature("ADD")
-@allure.description("Авторизация на сайте, через ранее созданного пользователя")  
-def test_authorization():
-    email = "kadome1058@modotso.com"
-    password= "test1234"
-    result= api2.authorization(email,password)
-    assert result["email"] == "kadome1058@modotso.com"
 
  

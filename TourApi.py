@@ -5,6 +5,8 @@ class TourApi:
     # Инициализация 
     def __init__(self, url) -> None:
         self.url = url
+        self.session = requests.Session()
+
     # id города откуда
     def get_city_id(self,city_name):
         response = requests.get(self.url+ '/filters/DepartureCities')
@@ -99,10 +101,15 @@ class TourApi:
         
     
     def authorization(self,email, password,):
-        fiels = {
+        # headers = {
+        #     'Content-Type': 'application/json',
+        #     'Accept': 'application/json'
+        # }
+        body = {
             "email": email,
-            "password":password,
+            "password":password
         }
-        resp = requests.post(self.url + '/login/signin', params=fiels)
-        return resp.json()
-
+        response = self.session.post(self.url + '/login/signin', json=body)
+        response.raise_for_status()
+        return response.json()
+   

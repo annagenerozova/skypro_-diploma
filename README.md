@@ -11,5 +11,16 @@
 -allure
 
 ## Шаги:
-1. Создать удаленный репозиторий в github
-2. 
+1. Создать удаленный репозиторий в github (https://github.com/annagenerozova/skypro_-diploma)
+2. Установить зависимости 
+3. запустить тесты с указанием пути к директории результатов тестирования pytest --alluredir allure-result
+4. Сформировать отчет --allure serve allure-result
+
+## Структура
+- requirements.txt - файл с зависимостями
+- test*:
+    -test_ui.py - UI тесты 
+    -test_api.py -API тесты 
+- MainPage.py - файл с методами для UI тестирования
+
+
