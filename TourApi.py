@@ -22,7 +22,8 @@ class TourApi:
                 return "Error decoding JSON from the response."
         else:
             return f"Error: Unable to fetch data, status code {response.status_code}"
-
+    
+    #Поиск id страны прибывания
     def get_coutry_id(self,city_name):
             response = requests.get(self.url+'/filters/GetArrivalCountries/244707') #244707 город отправления
             # Проверка статуса ответа
@@ -61,8 +62,8 @@ class TourApi:
     def post_hotel_ids(self,id_city, id_country):
 
         headers = {
-            'x-csrf-token': 'tdLG3vZnZWFbt3eq36FUDO0SxHGwGztTJBzFwlKH',
-            'Cookie': 'XSRF-TOKEN=eyJpdiI6InA0cFg5STJJSU40WlUrZUEzckFITmc9PSIsInZhbHVlIjoib1VnUEpsbjYxdUdMS0tqbE1TREtCNzlsYS9tZ3lZQm9LUjFMM3phc2N4NndyL1Y1UzZXejhUVnprZStzTlBaeFZJNXdXVnpjam1HTDdFd1VTMzhDVHFrMmd2RlFaVTY0VHdRNkZmaFZzaEJkcXVmUGlFVDNobElUVVlZRDJzZ1oiLCJtYWMiOiJmNzhlZTkzNzRlZmIyOGUwNjc3Zjc2YmI2ODBkYjA3NmFmOGQwYWViZTgwYTkzNjFkZWUyMjg0ZDJhYmExMTYyIn0%3D; __ddg1_=eT3uVnvvcKCwGzQJj9w5; funsan_session=eyJpdiI6IngxQ2FVVU9oeWg1RU1qd0JjK0pnR3c9PSIsInZhbHVlIjoiak5oTy80akJMdS8xOFpUOFZQM2kxcFBzd2RRd1VvTUhiQ3h1OFN0V1VvaDVFaU9VUjBHMjBDUnBnOGpEVnd1d1RXSCttdkVKZVRidFRPZ3Z3QlJzWHovbFUwNHVBTmdnR2VER3NmNzNFZ0ZWdWUwcFA2empEMDdrdyt3elgvREQiLCJtYWMiOiJjMWY4MzFjMTU1MmZiYzA0YWJjNThhMTcwNjNkN2M0YmExNWZlYjcxNWQzMGU2YzcyMGY3NzAyZjFiNmU0OTE3In0%3D',
+            'x-csrf-token': 'RDcqQ2GjjbH5wJXgGjivNhTojA5a2RnXvWIK6IhO',
+            'Cookie': 'XSRF-TOKEN=eyJpdiI6Ikl1RVFsUmlnTGh2aklSWExtRFJnbXc9PSIsInZhbHVlIjoiS2gvcG9MMnBoYWFjZ3ZzK2dZMFYzQmFOY0t0Y0ZzalpCekJPMXFrd0cxV3JTcGxNVkNuMXVvNUtIK1FZOEc0K05DU1RwZGQrc3RReS9nd3dxS2dXTms3UmxIbzFYWjRjUUZYeDFXSGsxR2lTbHVyNnpMeXVOcFJVQTRtb3IzSk8iLCJtYWMiOiIzZGFjNmRlY2Q1NGYzMDBjODAwOTFjNjQxYWQwMjAyMThlYjBmNjA3MDk2MjRkNDQ3YjFkNDA2MTNkMjM5M2VlIn0%3D; __ddg1_=HYuNSBNE9aiAMogFtsv1; funsan_session=eyJpdiI6IncwRFgxcVl5elhzbXorR0x2NnJCeHc9PSIsInZhbHVlIjoiejF5N1NZd0pvUjZSQ2FkVGtRNkllTXpkN2QwV1FkaWZleHpGSko4eXBwVVlCcURoSHNGTGlVNjBMT2lRZzVLNGQ3NjVXb0liVkt2SitFMDZGdDJMVGY2WUZPeWdrS2NpTzFLNWU4cFhpZEJrazJoakl1bkhvSDFGQ0thVUpvU2MiLCJtYWMiOiIzZDJhNDk1ODJhNTRmNGM5OGZjZGUxNzM2ZjU5NTVhYWViYjFkZDMxMTkwYWQ0OTdiZGRhZTNkYjI5NjVjOTUxIn0%3D',
             'x-xsrf-token': 'eyJpdiI6IjZ5M2lsV3FoMGF3S3dXYVltVHQyZkE9PSIsInZhbHVlIjoiVWNFSzNRWk9CMDIwMjUzR2pLTXlDWWQxclJWTWFpakYzQjk5aVZWcVhVektNREFHcTVvMHJMTHZWanlRdWRjdXpBQW9yRzg0ZE1zQkFJYm1iNk5LUGVsMUtjUmUyRmZKdmlTZzllTE5BMHRjL1FLcmIwbW90U01kT3UxM1BxbTAiLCJtYWMiOiJkY2JmNWUzZDZlYTg5OTAwNDQ4NTY3OWFhNzA3Y2UwNzRmNWYxNzk1MGQyNzcwYWJmOTdkZjk0ZDc3N2NhNTZiIn0='
         }
         body = {
@@ -73,15 +74,13 @@ class TourApi:
         response = requests.post(self.url+"/filters/getFilters" , headers=headers, json=body)
         return response.json()[0]['id']
 
-       
   
     def like(self, id_hotel):
         headers = {
-            'x-csrf-token': 'tdLG3vZnZWFbt3eq36FUDO0SxHGwGztTJBzFwlKH',
-            'Cookie': 'XSRF-TOKEN=eyJpdiI6IkhKUTI0RWJKWi9VS2FTOEpRT2cxVmc9PSIsInZhbHVlIjoiN3ZWTkRWbUVod2JWV2ZWNnpIVzkrdlQrcjlWRGFWT3dGNnBod243N0Qva1NZTTMrMVdzMGhKSkRXZUVHWWQ5RmxjaWRBd1ZpZzJIMFN5a1RPYS9Vc2ViNzNhVW5wZUhGVEx1R0IyYi9ZSUZnL1ExM0J6QWN0dU4zcGlmd0NiMXkiLCJtYWMiOiI4ZmJlMGM0ZDJmYmEwMmZlOGUwZWU0Mzg5NTYxMzBmNWMxZWZiZDQ2MTMxN2I3ZGQ5MDJhYmFlZWNiMGIyYjg3In0%3D; __ddg1_=eT3uVnvvcKCwGzQJj9w5; funsan_session=eyJpdiI6InNsRHpQeUlDbC80WTJoRFVhV3RCbEE9PSIsInZhbHVlIjoiNFFic1BVWVAwdU9ncFRES2ZnSWZrcGdSV1ZBclZTQmhMdENGN1VDYVRKOE9XVzY4a1JWUHdHTktrWGdVeFgxMGJDa1JkL1ovUlM1UUFpakpLa3lnckRBRHFaMHZ2RmVmTUtvWks5M2htdExGWVFDMEFORk5wRzN2QTdKWEd6c00iLCJtYWMiOiIwYTAzYWI2ODYzMzcwNWZkMGM3NjczMmMzY2I5OWY0OWMyZDgxMzg0ODFhMDYwNjJlZDBjZDQ1ZWI3YjM3ODg2In0%3D',
-            'x-xsrf-token': 'eyJpdiI6IlhsUDFzZC9paVZuTlhmcFlsNUs4cWc9PSIsInZhbHVlIjoiYXVFMU5hSk9MV3RqdFQvM0dGaWsydnJ3aVlzdDRVVDlzeGtFanFQUzMrZGlTVTNEN2tLYjBqU0pJc1laRDZ2c2M1L1NEV2JZQWFndDYrWU9oZ2doZ0E4L3hmR2pJRzhOMHhpVmNDRkgyYTFoZGswYURqOEF5cG9rV1phczNiZUkiLCJtYWMiOiJjNDA1ZDYzMmE3NWE4ZWJjNjMyYjNmNmRhOWFiNzBiNDdmM2Y5ZWI1MWFkYjIzZGRhZjNjZmM4MjcxMWE2NDJiIn0='
+            'x-csrf-token': 'RDcqQ2GjjbH5wJXgGjivNhTojA5a2RnXvWIK6IhO',
+            'Cookie': 'XSRF-TOKEN=eyJpdiI6IjR1QWF4WVJEVCtPWkVsaGtITWJGblE9PSIsInZhbHVlIjoiNlBieUpQK2thMGovZzhoYmtVWkN3TUxCRW10YWI5MHJRL2pHaTVYV3JVNFEvMGtUVzNQWmhCTFpMeEJQOHRQZG8wUjlYSUwrcStNZkVyaWhZdk8rMHZ1NVpJN1hGSlVLTDV2bFZJQmJsaHQyVkJ5all3blhjMEVSVHZIQ1ovSlEiLCJtYWMiOiJlMzhhMGFkODQ5YzM3Y2VhMDFkMWQ0OGE2ZTdlOTU0MTliMzZmZWJkYzRiN2RmNTM2ZTllMTJmYWUyNjk5ZWQwIn0%3D; __ddg1_=HYuNSBNE9aiAMogFtsv1; funsan_session=eyJpdiI6IkRLOW9HSU9KdE1aQ29zZ2R4M0lTQ0E9PSIsInZhbHVlIjoiWWZoZ1JkeVBMUW9pNzUvU0xBSTlIa3gzVldZcDdRZ2xrajRlY1FzQnZ0ZWFORFByMUlSL1FaVlRRZko0UjdhblYrejIvbEpqUndLWStRNTRYU00zSnl6eUhBeFg2YTVsNFM1STd0RTVJOUwrUG9lY09LWjlSTm5xZ1BoZ1ZpQlEiLCJtYWMiOiIxY2ZjMzNhMzE3ZmE4MjU3OTRmOWZjYmQ1OGU4ZWVjYjc1ZTJhZTFhNWQwMjk4NTllY2NkZDZkZDAyOTdiNWNhIn0%3D',
+            'x-xsrf-token': 'eyJpdiI6IjZ5M2lsV3FoMGF3S3dXYVltVHQyZkE9PSIsInZhbHVlIjoiVWNFSzNRWk9CMDIwMjUzR2pLTXlDWWQxclJWTWFpakYzQjk5aVZWcVhVektNREFHcTVvMHJMTHZWanlRdWRjdXpBQW9yRzg0ZE1zQkFJYm1iNk5LUGVsMUtjUmUyRmZKdmlTZzllTE5BMHRjL1FLcmIwbW90U01kT3UxM1BxbTAiLCJtYWMiOiJkY2JmNWUzZDZlYTg5OTAwNDQ4NTY3OWFhNzA3Y2UwNzRmNWYxNzk1MGQyNzcwYWJmOTdkZjk0ZDc3N2NhNTZiIn0='
         }
-        
         body={
             "objectTypeId":2,
             "objectKey":id_hotel
@@ -93,20 +92,25 @@ class TourApi:
     
     def list_like(self, params_to_add=None):
         headers = {
-            'x-csrf-token': 'tdLG3vZnZWFbt3eq36FUDO0SxHGwGztTJBzFwlKH',
-            'Cookie': 'XSRF-TOKEN=eyJpdiI6IkhKUTI0RWJKWi9VS2FTOEpRT2cxVmc9PSIsInZhbHVlIjoiN3ZWTkRWbUVod2JWV2ZWNnpIVzkrdlQrcjlWRGFWT3dGNnBod243N0Qva1NZTTMrMVdzMGhKSkRXZUVHWWQ5RmxjaWRBd1ZpZzJIMFN5a1RPYS9Vc2ViNzNhVW5wZUhGVEx1R0IyYi9ZSUZnL1ExM0J6QWN0dU4zcGlmd0NiMXkiLCJtYWMiOiI4ZmJlMGM0ZDJmYmEwMmZlOGUwZWU0Mzg5NTYxMzBmNWMxZWZiZDQ2MTMxN2I3ZGQ5MDJhYmFlZWNiMGIyYjg3In0%3D; __ddg1_=eT3uVnvvcKCwGzQJj9w5; funsan_session=eyJpdiI6InNsRHpQeUlDbC80WTJoRFVhV3RCbEE9PSIsInZhbHVlIjoiNFFic1BVWVAwdU9ncFRES2ZnSWZrcGdSV1ZBclZTQmhMdENGN1VDYVRKOE9XVzY4a1JWUHdHTktrWGdVeFgxMGJDa1JkL1ovUlM1UUFpakpLa3lnckRBRHFaMHZ2RmVmTUtvWks5M2htdExGWVFDMEFORk5wRzN2QTdKWEd6c00iLCJtYWMiOiIwYTAzYWI2ODYzMzcwNWZkMGM3NjczMmMzY2I5OWY0OWMyZDgxMzg0ODFhMDYwNjJlZDBjZDQ1ZWI3YjM3ODg2In0%3D',
-            'x-xsrf-token': 'eyJpdiI6IlhsUDFzZC9paVZuTlhmcFlsNUs4cWc9PSIsInZhbHVlIjoiYXVFMU5hSk9MV3RqdFQvM0dGaWsydnJ3aVlzdDRVVDlzeGtFanFQUzMrZGlTVTNEN2tLYjBqU0pJc1laRDZ2c2M1L1NEV2JZQWFndDYrWU9oZ2doZ0E4L3hmR2pJRzhOMHhpVmNDRkgyYTFoZGswYURqOEF5cG9rV1phczNiZUkiLCJtYWMiOiJjNDA1ZDYzMmE3NWE4ZWJjNjMyYjNmNmRhOWFiNzBiNDdmM2Y5ZWI1MWFkYjIzZGRhZjNjZmM4MjcxMWE2NDJiIn0='
+            'x-csrf-token': 'RDcqQ2GjjbH5wJXgGjivNhTojA5a2RnXvWIK6IhO',
+            'Cookie': 'XSRF-TOKEN=eyJpdiI6Ikl1RVFsUmlnTGh2aklSWExtRFJnbXc9PSIsInZhbHVlIjoiS2gvcG9MMnBoYWFjZ3ZzK2dZMFYzQmFOY0t0Y0ZzalpCekJPMXFrd0cxV3JTcGxNVkNuMXVvNUtIK1FZOEc0K05DU1RwZGQrc3RReS9nd3dxS2dXTms3UmxIbzFYWjRjUUZYeDFXSGsxR2lTbHVyNnpMeXVOcFJVQTRtb3IzSk8iLCJtYWMiOiIzZGFjNmRlY2Q1NGYzMDBjODAwOTFjNjQxYWQwMjAyMThlYjBmNjA3MDk2MjRkNDQ3YjFkNDA2MTNkMjM5M2VlIn0%3D; __ddg1_=HYuNSBNE9aiAMogFtsv1; funsan_session=eyJpdiI6IncwRFgxcVl5elhzbXorR0x2NnJCeHc9PSIsInZhbHVlIjoiejF5N1NZd0pvUjZSQ2FkVGtRNkllTXpkN2QwV1FkaWZleHpGSko4eXBwVVlCcURoSHNGTGlVNjBMT2lRZzVLNGQ3NjVXb0liVkt2SitFMDZGdDJMVGY2WUZPeWdrS2NpTzFLNWU4cFhpZEJrazJoakl1bkhvSDFGQ0thVUpvU2MiLCJtYWMiOiIzZDJhNDk1ODJhNTRmNGM5OGZjZGUxNzM2ZjU5NTVhYWViYjFkZDMxMTkwYWQ0OTdiZGRhZTNkYjI5NjVjOTUxIn0%3D',
+            'x-xsrf-token': 'eyJpdiI6IjZ5M2lsV3FoMGF3S3dXYVltVHQyZkE9PSIsInZhbHVlIjoiVWNFSzNRWk9CMDIwMjUzR2pLTXlDWWQxclJWTWFpakYzQjk5aVZWcVhVektNREFHcTVvMHJMTHZWanlRdWRjdXpBQW9yRzg0ZE1zQkFJYm1iNk5LUGVsMUtjUmUyRmZKdmlTZzllTE5BMHRjL1FLcmIwbW90U01kT3UxM1BxbTAiLCJtYWMiOiJkY2JmNWUzZDZlYTg5OTAwNDQ4NTY3OWFhNzA3Y2UwNzRmNWYxNzk1MGQyNzcwYWJmOTdkZjk0ZDc3N2NhNTZiIn0='
         }
         resp = requests.get(self.url + '/search/wishList', headers=headers, params=params_to_add)
         return resp.json()
 
-
     
     def delete_like(self, id_hotel):
+        headers = {
+            'x-csrf-token': 'RDcqQ2GjjbH5wJXgGjivNhTojA5a2RnXvWIK6IhO',
+            'Cookie': 'XSRF-TOKEN=eyJpdiI6Ikl1RVFsUmlnTGh2aklSWExtRFJnbXc9PSIsInZhbHVlIjoiS2gvcG9MMnBoYWFjZ3ZzK2dZMFYzQmFOY0t0Y0ZzalpCekJPMXFrd0cxV3JTcGxNVkNuMXVvNUtIK1FZOEc0K05DU1RwZGQrc3RReS9nd3dxS2dXTms3UmxIbzFYWjRjUUZYeDFXSGsxR2lTbHVyNnpMeXVOcFJVQTRtb3IzSk8iLCJtYWMiOiIzZGFjNmRlY2Q1NGYzMDBjODAwOTFjNjQxYWQwMjAyMThlYjBmNjA3MDk2MjRkNDQ3YjFkNDA2MTNkMjM5M2VlIn0%3D; __ddg1_=HYuNSBNE9aiAMogFtsv1; funsan_session=eyJpdiI6IncwRFgxcVl5elhzbXorR0x2NnJCeHc9PSIsInZhbHVlIjoiejF5N1NZd0pvUjZSQ2FkVGtRNkllTXpkN2QwV1FkaWZleHpGSko4eXBwVVlCcURoSHNGTGlVNjBMT2lRZzVLNGQ3NjVXb0liVkt2SitFMDZGdDJMVGY2WUZPeWdrS2NpTzFLNWU4cFhpZEJrazJoakl1bkhvSDFGQ0thVUpvU2MiLCJtYWMiOiIzZDJhNDk1ODJhNTRmNGM5OGZjZGUxNzM2ZjU5NTVhYWViYjFkZDMxMTkwYWQ0OTdiZGRhZTNkYjI5NjVjOTUxIn0%3D',
+            'x-xsrf-token': 'eyJpdiI6IjZ5M2lsV3FoMGF3S3dXYVltVHQyZkE9PSIsInZhbHVlIjoiVWNFSzNRWk9CMDIwMjUzR2pLTXlDWWQxclJWTWFpakYzQjk5aVZWcVhVektNREFHcTVvMHJMTHZWanlRdWRjdXpBQW9yRzg0ZE1zQkFJYm1iNk5LUGVsMUtjUmUyRmZKdmlTZzllTE5BMHRjL1FLcmIwbW90U01kT3UxM1BxbTAiLCJtYWMiOiJkY2JmNWUzZDZlYTg5OTAwNDQ4NTY3OWFhNzA3Y2UwNzRmNWYxNzk1MGQyNzcwYWJmOTdkZjk0ZDc3N2NhNTZiIn0='
+        }
         params={
             "objectKey":id_hotel
             }
-        response = requests.delete(self.url+'/search/wishList/' + str(id_hotel) ,params=params )
+        resp = requests.delete(self.url+'/search/wishList/' + str(id_hotel) ,params=params,headers=headers )
+        return resp.json()
     
     #поиск туров в определенной стране - Тайланде
     def thailand_tour(self):
@@ -115,10 +119,7 @@ class TourApi:
         
     
     def authorization(self,email, password,):
-        # headers = {
-        #     'Content-Type': 'application/json',
-        #     'Accept': 'application/json'
-        # }
+        
         body = {
             "email": email,
             "password":password

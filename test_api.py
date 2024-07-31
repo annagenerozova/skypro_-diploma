@@ -91,6 +91,47 @@ def test_like_tour():
         assert body2_like - body1_like == 1
 
 
+@allure.id("SKYPRO-6")
+@allure.epic("Тyр фирма Fun&Sun") 
+@allure.severity("blocker")
+@allure.title("Удаление тура из избранное")
+@allure.feature("ADD")
+@allure.description("удалить добавленный в избранное тур")
+def test_delete_like_tour():
+    city_name = "Санкт-Петербург"
+    city_id = api2.get_city_id(city_name) 
+    country_name = "Турция" 
+    country_id = api2.get_coutry_id(country_name)
+    id_hotel = api2.post_hotel_ids(city_id, country_id)
+    with allure.step("Добавили отель в избранное"):
+        hotel_like =api2.like(id_hotel)
+    with allure.step("Получение списка избранных"):
+        body1_like =len(api2.list_like())
+    with allure.step("Удалили отель в избранное"):
+        delete_hotel = api2.delete_like(id_hotel)
+    with allure.step("Получение списка избранных после удаления"):
+        body2_like = len(api2.list_like())
+    with allure.step("Сравнить размеры 2х списков"): 
+        assert body1_like - body2_like == 1
+
+
+@allure.id("SKYPRO-7")
+@allure.epic("Тyр фирма Fun&Sun") 
+@allure.severity("blocker")
+@allure.title("Авторизация")
+@allure.feature("ADD")
+@allure.description("Авторизация на сайте, через ранее созданного пользователя")  
+def test_authorization():
+    email = "kadome1058@modotso.com"
+    password= "test1234"
+    try:
+        result = api2.authorization(email, password)
+        print(result)
+        assert 'token' in result, "Authorization failed: No token in response"
+    except requests.exceptions.RequestException as e:
+        print(f"HTTP error occurred: {e}")
+        assert False, f"Test failed due to HTTP error: {e}"
+
 @allure.id("SKYPRO-7")
 @allure.epic("Тyр фирма Fun&Sun") 
 @allure.severity("blocker")
